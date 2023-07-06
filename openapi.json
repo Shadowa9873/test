@@ -796,139 +796,13 @@
         }
       }
     },
-    "/practitioner": {
-      "get": {
-        "tags": [
-          "Practitioner Resource"
-        ],
-        "summary": "Queries the albums matching to the key param",
-        "description": "This method is used to query albums matching to the {key} parameter.",
-        "parameters": [
-          {
-            "name": "key",
-            "in": "query",
-            "description": "Key of the tone query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The numbers of items to return",
-            "required": false,
-            "schema": {
-              "format": "int32",
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "The number of items to skip before starting to collect the result set",
-            "required": false,
-            "schema": {
-              "format": "int32",
-              "type": "integer"
-            }
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "description": "This parameter is used to sort search query. Possible values are;\n- Name\n- Popularity\n- Newest\n- Oldest\n- Price\n- NumberOfTones",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Channel",
-            "in": "header",
-            "description": "This parameter is used to track the channel of the request. Possible values are;\n- IVR\n- USSD\n- SMS\n- RBTMobileApp\n- RBTSubscriberPortal\n- MobilyMobileApp\n- MobilyEPortal\n- OTHER",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Language",
-            "in": "header",
-            "description": "Language of the content.  Possible values are;\n- EN\n- AR",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-Username",
-            "in": "header",
-            "description": "User name of the API, log purposes only",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Albums are Retrieved",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Doctor"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Not Authorized",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "403": {
-            "description": "Not Allowed"
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "BearerAuthentication": [
-              "admin",
-              "doctor"
-            ]
-          }
-        ]
-      }
-    },
     "/practitioner/allergies/{userId}": {
       "get": {
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch user allergies",
+        "description": "Fetches a list of all allergies of a user by the user's ID.",
         "parameters": [
           {
             "name": "userId",
@@ -942,16 +816,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserAllergy"
-                  }
-                }
-              }
+              "application/json": {}
             }
           },
           "401": {
@@ -959,6 +826,12 @@
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {}
+            }
           }
         },
         "security": [
@@ -976,6 +849,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch user contacts",
+        "description": "Fetches a list of all contacts of a user by the user's ID.",
         "parameters": [
           {
             "name": "userId",
@@ -989,16 +864,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserContact"
-                  }
-                }
-              }
+              "application/json": {}
             }
           },
           "401": {
@@ -1006,6 +874,12 @@
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {}
+            }
           }
         },
         "security": [
@@ -1023,6 +897,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch user diseases",
+        "description": "Fetches a list of all diseases of a user by the user's ID.",
         "parameters": [
           {
             "name": "userId",
@@ -1036,16 +912,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserDisease"
-                  }
-                }
-              }
+              "application/json": {}
             }
           },
           "401": {
@@ -1053,6 +922,12 @@
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {}
+            }
           }
         },
         "security": [
@@ -1070,6 +945,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch user family diseases",
+        "description": "Fetches a list of all family diseases of a user by the user's ID.",
         "parameters": [
           {
             "name": "userId",
@@ -1083,16 +960,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserDiseaseInFamily"
-                  }
-                }
-              }
+              "application/json": {}
             }
           },
           "401": {
@@ -1100,6 +970,12 @@
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {}
+            }
           }
         },
         "security": [
@@ -1117,6 +993,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch user drug usages",
+        "description": "Fetches a list of all drug usages of a user by the user's ID.",
         "parameters": [
           {
             "name": "userId",
@@ -1130,16 +1008,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserDrugUsage"
-                  }
-                }
-              }
+              "application/json": {}
             }
           },
           "401": {
@@ -1147,6 +1018,12 @@
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {}
+            }
           }
         },
         "security": [
@@ -1164,6 +1041,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch all patients based on certain search criteria",
+        "description": "This operation retrieves a list of PatientIdentity objects based on the provided search criteria. All criteria are optional and used for exact matches. The criteria include: name, surname, file number (DOSYANO), and social security number (SSN).",
         "parameters": [
           {
             "name": "fileNo",
@@ -1200,14 +1079,17 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PatientIdentity"
-                  }
+                  "$ref": "#/components/schemas/BadRequestException"
                 }
               }
             }
@@ -1217,6 +1099,26 @@
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Patients Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundException"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -1234,6 +1136,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch appointments",
+        "description": "This operation retrieves a map of appointments for the logged-in doctor on a specific date. The date is calculated based on the provided page number, with each page representing a 12-day span from the current date. The method returns a map where the key is a date and the value is a list of DoctorAppointment objects for that date.",
         "parameters": [
           {
             "name": "pageNumber",
@@ -1248,17 +1152,17 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/DoctorAppointment"
-                    }
-                  }
+                  "$ref": "#/components/schemas/BadRequestException"
                 }
               }
             }
@@ -1268,6 +1172,26 @@
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Doctor or Department Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundException"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -1285,6 +1209,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch doctor's patients",
+        "description": "This operation retrieves a list of DoctorOrderPatientIdentity objects for the currently logged-in doctor. Optionally, a name search string can be provided, in which case only patients with a full name containing that string (case-insensitive) will be returned.",
         "parameters": [
           {
             "name": "nameSearch",
@@ -1298,14 +1224,17 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DoctorOrderPatientIdentity"
-                  }
+                  "$ref": "#/components/schemas/BadRequestException"
                 }
               }
             }
@@ -1315,6 +1244,26 @@
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Doctor or Patients Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundException"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -1332,6 +1281,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch doctor's patients with pagination",
+        "description": "This operation retrieves a paginated list of DoctorPatientIdentity objects for the currently logged-in doctor. Optionally, a name search string can be provided, in which case only patients with a full name containing that string (case-insensitive) will be returned. Pagination is achieved by specifying the number of records to skip and the number of records to take.",
         "parameters": [
           {
             "name": "nameSearch",
@@ -1363,14 +1314,17 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DoctorPatientIdentity"
-                  }
+                  "$ref": "#/components/schemas/BadRequestException"
                 }
               }
             }
@@ -1380,6 +1334,26 @@
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Doctor or Patients Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundException"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -1397,6 +1371,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Update a specific order",
+        "description": "This operation updates an order for a specific patient. The patient and order are identified using the provided patient ID and order details. The order can only be updated if its status (DURUM) is 0. If successful, the method updates the order's details including date of inclusion, plan date, date of change, changing doctor, notes, and verbal order.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1408,13 +1384,46 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestException"
+                }
+              }
+            }
           },
           "401": {
             "description": "Not Authorized"
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Patient or Record Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundException"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error, Not Updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -1430,6 +1439,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Add a new order",
+        "description": "This operation creates a new order for a specific patient and returns the created order. The patient is identified using the provided patient ID. The method also checks for the patient's arrival and verifies the patient's identity. The order details including date of inclusion, plan date, adding doctor, notes, doctor, order number, status, verbal order, arrival number, and arrival ID are all set and added.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1441,13 +1452,46 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestException"
+                }
+              }
+            }
           },
           "401": {
             "description": "Not Authorized"
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Patient or Record Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundException"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -1559,6 +1603,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch user image",
+        "description": "Fetches the image of a user by the user's ID.",
         "parameters": [
           {
             "name": "userId",
@@ -1572,13 +1618,22 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success",
+            "content": {
+              "application/octet-stream": {}
+            }
           },
           "401": {
             "description": "Not Authorized"
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {}
+            }
           }
         },
         "security": [
@@ -1596,6 +1651,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch user profile",
+        "description": "Fetches the profile of a user by the user's ID.",
         "parameters": [
           {
             "name": "userId",
@@ -1609,13 +1666,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
+              "application/json": {}
             }
           },
           "401": {
@@ -1623,6 +1676,12 @@
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {}
+            }
           }
         },
         "security": [
@@ -1640,6 +1699,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Generate and fetch a report in PDF format",
+        "description": "This operation generates a report of a given type for a specific prescription and patient, and returns it in PDF format. The report type can be PRESCRIPTION, MEDICATION, RADIOLOGY, or PATHOLOGY.",
         "parameters": [
           {
             "name": "prescriptionId",
@@ -1671,13 +1732,36 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Report Successfully Generated and Returned",
+            "content": {
+              "application/pdf": {}
+            }
           },
           "401": {
             "description": "Not Authorized"
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundException"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -1695,6 +1779,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch all reports for a user",
+        "description": "Fetches a map of all reports for a user by the user's ID.",
         "parameters": [
           {
             "name": "userId",
@@ -1708,19 +1794,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ReportItem"
-                    }
-                  }
-                }
-              }
+              "application/json": {}
             }
           },
           "401": {
@@ -1728,6 +1804,12 @@
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {}
+            }
           }
         },
         "security": [
@@ -1745,6 +1827,8 @@
         "tags": [
           "Practitioner Resource"
         ],
+        "summary": "Fetch user surgeries",
+        "description": "Fetches a list of all surgeries of a user by the user's ID.",
         "parameters": [
           {
             "name": "userId",
@@ -1758,16 +1842,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserSurgery"
-                  }
-                }
-              }
+              "application/json": {}
             }
           },
           "401": {
@@ -1775,6 +1852,12 @@
           },
           "403": {
             "description": "Not Allowed"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {}
+            }
           }
         },
         "security": [
@@ -3271,35 +3354,6 @@
           }
         }
       },
-      "DoctorAppointment": {
-        "type": "object",
-        "properties": {
-          "appointmentId": {
-            "type": "string"
-          },
-          "kimlikId": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          },
-          "date": {
-            "$ref": "#/components/schemas/LocalDateTime"
-          },
-          "timeText": {
-            "type": "string"
-          },
-          "isOnline": {
-            "type": "boolean"
-          },
-          "fullName": {
-            "type": "string"
-          },
-          "securityNumber": {
-            "type": "string"
-          }
-        }
-      },
       "DoctorDto": {
         "type": "object",
         "properties": {
@@ -3353,58 +3407,6 @@
             "items": {
               "$ref": "#/components/schemas/DoctorDto"
             }
-          }
-        }
-      },
-      "DoctorOrderPatientIdentity": {
-        "type": "object",
-        "properties": {
-          "kimlikId": {
-            "type": "string"
-          },
-          "fileNo": {
-            "type": "string"
-          },
-          "visitNo": {
-            "type": "string"
-          },
-          "fullName": {
-            "type": "string"
-          },
-          "service": {
-            "type": "string"
-          },
-          "securityNumber": {
-            "type": "string"
-          },
-          "admissionDate": {
-            "$ref": "#/components/schemas/LocalDateTime"
-          }
-        }
-      },
-      "DoctorPatientIdentity": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "kimlikId": {
-            "type": "string"
-          },
-          "fileNo": {
-            "type": "string"
-          },
-          "fullName": {
-            "type": "string"
-          },
-          "securityNumber": {
-            "type": "string"
-          },
-          "admissionDate": {
-            "$ref": "#/components/schemas/LocalDateTime"
-          },
-          "gender": {
-            "type": "string"
           }
         }
       },
@@ -4687,53 +4689,6 @@
       },
       "OutputStream": {
         "type": "object"
-      },
-      "PatientIdentity": {
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string"
-          },
-          "DOSYANO": {
-            "type": "string"
-          },
-          "AD": {
-            "type": "string"
-          },
-          "SOYAD": {
-            "type": "string"
-          },
-          "DOGUMTARIH": {
-            "$ref": "#/components/schemas/LocalDate"
-          },
-          "CINSIYET": {
-            "type": "string"
-          },
-          "KIMLIKNO": {
-            "type": "string"
-          },
-          "iD": {
-            "type": "string"
-          },
-          "dOSYANO": {
-            "type": "string"
-          },
-          "aD": {
-            "type": "string"
-          },
-          "sOYAD": {
-            "type": "string"
-          },
-          "dOGUMTARIH": {
-            "$ref": "#/components/schemas/LocalDate"
-          },
-          "cINSIYET": {
-            "type": "string"
-          },
-          "kIMLIKNO": {
-            "type": "string"
-          }
-        }
       },
       "PeriodEnum": {
         "enum": [
